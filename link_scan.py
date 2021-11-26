@@ -43,6 +43,11 @@ def invalid_urls(urllist: List[str]) -> List[str]:
     """Validate the urls in urllist and return a new list containing
     the invalid or unreachable urls.
     """
-    pass
+    invalid_urls_list = []
+    for url in urllist:
+        if not is_valid_url(url):
+            invalid_urls_list.append(url)
+    return invalid_urls_list
+
 
 print(is_valid_url("https://www.youtube.com/"))
