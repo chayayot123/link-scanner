@@ -2,7 +2,8 @@ from typing import List
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from urllib.parse import urldefrag
-import requests
+import requests, sys
+
 
 
 def get_links(url:str):
@@ -49,5 +50,20 @@ def invalid_urls(urllist: List[str]) -> List[str]:
             invalid_urls_list.append(url)
     return invalid_urls_list
 
+def main():
+    bad_link_list = []
+    url_link = get_links(sys.argv[1])
+    if(is_valid_url(url= url_link)):
+        all_link = get_links(url= url_link)
+        for link in all_link:
+            print(link)
+        bad_link_list = invalid_urls(all_link)
+        if(bad_link_list != []):
+            for bad_link in bad_link_list:
+                print(bad_link)
+    else:
+        print("Invalid HTML page")
+    
 
-print(is_valid_url("https://www.youtube.com/"))
+if __name__ == '__main__':
+    main()
